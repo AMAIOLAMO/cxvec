@@ -2,7 +2,8 @@
 
 this is a header only library intended for vector linear algebra. It should work for both C and C++.
 
-C++ should have their respective operator overloads. (This statement is not true yet for all types, only Vec3* types)
+C++ should have their respective operator overloads. (this expects the `__cplusplus` macro to be defined)
+(however this will change in the future, as instead, you can define `CX_OP_OVERLOAD` macro instead to freely support)
 
 ## how to use
 
