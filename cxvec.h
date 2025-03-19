@@ -29,7 +29,7 @@ extern "C" {
 #define VEC2_DEF(type, type_name) \
     typedef struct type_name##_t { \
         type x, y; \
-        VEC_OP_DEF(type, type_name); \
+        VEC_OP_DEF(type, type_name) \
     } type_name;   \
     type_name type_name##_make(type value);                           \
     type_name type_name##_add(type_name a, type_name b);              \
@@ -43,7 +43,7 @@ extern "C" {
 #define VEC3_DEF(type, type_name) \
     typedef struct type_name##_t { \
         type x, y, z; \
-        VEC_OP_DEF(type, type_name); \
+        VEC_OP_DEF(type, type_name) \
     } type_name;      \
     type_name type_name##_make(type value);                           \
     type_name type_name##_add(type_name a, type_name b);              \
@@ -59,11 +59,11 @@ extern "C" {
     type_name type_name##_map(type_name vec, type (*func)(type axis));\
     void type_name##_fprint(FILE *file, type_name vec);
 
-VEC2_DEF(float, Vec2f);
-VEC2_DEF(int, Vec2i);
+VEC2_DEF(float, Vec2f)
+VEC2_DEF(int, Vec2i)
 
-VEC3_DEF(float, Vec3f);
-VEC3_DEF(int, Vec3i);
+VEC3_DEF(float, Vec3f)
+VEC3_DEF(int, Vec3i)
 
 #ifdef __cplusplus
 #define VEC_OP_IMPL(type, type_name) \
@@ -104,16 +104,16 @@ void type_name::operator+=(const type_name vec) { *this = *this + vec; } \
     type_name type_name##_negate(type_name vec)              { return type_name##_scale(vec, -1); }  \
     type_name type_name##_mirror(type_name vec, type_name normal) { return type_name##_subtract(vec, type_name##_scale(normal, 2 * type_name##_dot(vec, normal))); } \
     type_name type_name##_reflect(type_name incident, type_name normal) { return type_name##_mirror(type_name##_negate(incident), normal); } \
-    type_name type_name##_map(type_name vec, type (*func)(type axis)) { assert(func != nullptr); return (type_name){ func(vec.x), func(vec.y), func(vec.z) }; } \
+    type_name type_name##_map(type_name vec, type (*func)(type axis)) { assert(func != NULL); return (type_name){ func(vec.x), func(vec.y), func(vec.z) }; } \
     void type_name##_fprint(FILE *file, type_name vec) { fprintf(file, "<%.2f, %.2f, %.2f>", (float)vec.x, (float)vec.y, (float)vec.z); } \
     VEC_OP_IMPL(type, type_name)
 
 
-VEC2_IMPL(float, Vec2f);
-VEC2_IMPL(int, Vec2i);
+VEC2_IMPL(float, Vec2f)
+VEC2_IMPL(int, Vec2i)
 
-VEC3_IMPL(float, Vec3f);
-VEC3_IMPL(int, Vec3i);
+VEC3_IMPL(float, Vec3f)
+VEC3_IMPL(int, Vec3i)
 
 #undef CXVEC_IMPL_ONCE
 #endif

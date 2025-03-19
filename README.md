@@ -15,6 +15,8 @@ examples of this:
 ```c
 #include <stdio.h>
 
+// effectively allow cxvec to act like a implementation file (cxvec.c)
+#define CXVEC_IMPL_ONCE 
 #include "cxvec.h"
 
 int main(void) {
